@@ -1,6 +1,6 @@
-import express from 'express';
-import conexaoMongo from "./config/dbConnect.js"
-import routes from "./routes/index.js"
+import express from "express";
+import conexaoMongo from "./config/dbConnect.js";
+import routes from "./routes/index.js";
 
 const conexao = await conexaoMongo();
 

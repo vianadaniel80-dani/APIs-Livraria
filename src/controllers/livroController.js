@@ -1,5 +1,5 @@
-import { livros } from "../models/Livro.js"
-import { autor } from "../models/Autor.js"
+import { livros } from "../models/Livro.js";
+import { autor } from "../models/Autor.js";
 
 class LivroController {
 
@@ -10,7 +10,7 @@ class LivroController {
             const listaLivros = await livros.find({});
             resp.status(200).json(listaLivros);
         } catch (error) {
-            resp.status(500).json({ message: `${error.message} - Falha na requisição` })
+            resp.status(500).json({ message: `${error.message} - Falha na requisição` });
         }
 
     }
@@ -23,7 +23,7 @@ class LivroController {
             const listaLivros = await livros.find({ editora: editora });
             resp.status(200).json(listaLivros);
         } catch (error) {
-            resp.status(500).json({ message: `${error.message} - Falha na requisição` })
+            resp.status(500).json({ message: `${error.message} - Falha na requisição` });
         }
 
     }
@@ -36,7 +36,7 @@ class LivroController {
             const listaLivros = await livros.find({ preco: preco });
             resp.status(200).json(listaLivros);
         } catch (error) {
-            resp.status(500).json({ message: `${error.message} - Falha na requisição` })
+            resp.status(500).json({ message: `${error.message} - Falha na requisição` });
         }
 
     }
@@ -48,12 +48,12 @@ class LivroController {
 
         try {
             const autorEncontrado = await autor.findById(novoLivro.autor);
-            const livroCompleto = { ...novoLivro, autor: { ...autorEncontrado._doc } }
+            const livroCompleto = { ...novoLivro, autor: { ...autorEncontrado._doc } };
             const cadastraLivro = await livros.create(livroCompleto);
             resp.status(201).json({
                 message: "Livro cadastrado com sucesso",
                 livro: cadastraLivro
-            })
+            });
 
         } catch (error) {
             resp.status(500).json({
@@ -93,7 +93,7 @@ class LivroController {
         try {
             const livroId = req.params.id;
             await livros.findByIdAndUpdate(livroId, req.body, { runValidators: true });
-            resp.status(200).json({ message: `Livro atualizado com sucesso` });
+            resp.status(200).json({ message: "Livro atualizado com sucesso" });
         } catch (error) {
             resp.status(500).json({
                 message: `${error.message} - Falha na requisição`
